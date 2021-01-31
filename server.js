@@ -24,13 +24,13 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/timestamp/:date", (req, res) => {
+app.get("/api/timestamp/:date?", (req, res) => {
   let {date} = req.params;
   let unixTimestamp;
   let utcTimestamp;
   if(!date) {
-    unixTimestamp = parseInt(new Date().getTime());
-    utcTimestamp = new Date().toUTCString();
+    unixTimestamp =  Date.now();
+    utcTimestamp = Date();
   } else {
     let newDate;
     newDate = isNaN(Number(date)) ? new Date(date) : new Date(Number(date));
